@@ -1,0 +1,15 @@
+server:
+  port: 9085
+
+logging:
+  level:
+    root: INFO
+    '[org.springframework.web]': INFO
+    '[org.springframework.security.oauth2]': INFO
+    
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://us-south.appid.cloud.ibm.com/oauth/v4/83f91118-37d1-4c0d-b0b8-4a530d1174bb
