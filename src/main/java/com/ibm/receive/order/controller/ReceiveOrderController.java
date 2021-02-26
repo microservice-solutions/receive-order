@@ -14,9 +14,9 @@ public class ReceiveOrderController {
 	
 	@PostMapping
 	public ResponseEntity<String> placeOrder(@RequestParam String productCode, @RequestParam int quantity,
-			@AuthenticationPrincipal Jwt accessToken) {
+			@AuthenticationPrincipal Jwt idToken) {
 		
-		String response = String.format("Order Received [Product:%s][Quantity:%s]", productCode, quantity);
+		String response = String.format("Order Received from %s [Product:%s][Quantity:%s]", idToken.getClaim("email"), productCode, quantity);
 		
 		return ResponseEntity.ok(response);
 	}
