@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("/order")
+@RequestMapping
 public class ReceiveOrderController {
 	
-	@PostMapping
-	public ResponseEntity<String> placeOrder(@RequestParam String productCode, @RequestParam int quantity,
+	@PostMapping("/order")
+	public ResponseEntity<String> placeOrder(@RequestParam String transactionId, @RequestParam String productCode, @RequestParam int quantity,
 			@AuthenticationPrincipal Jwt idToken) {
 		
-		String response = String.format("Order Received from %s [Product:%s][Quantity:%s]", idToken.getClaim("email"), productCode, quantity);
+		String response = String.format("[Transaction ID: %s] Order Received from %s [Product:%s][Quantity:%s]",
+				transactionId, idToken.getClaim("email"), productCode, quantity);
 		
 		return ResponseEntity.ok(response);
 	}
